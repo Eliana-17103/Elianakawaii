@@ -48,6 +48,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
     private DcMotor transfer;
 
+    private Servo flowerIntake;
     // IMU used for field-centric driving
     private IMU imu;
 
@@ -310,9 +311,10 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
                 Servo.class, "defense");
 
 
-        // Map transfer motor
+        // Map transfer and flower motor
         transfer = hardwareMap.get(
                 DcMotor.class, "transfer");
+        flowerIntake = hardwareMap.get(Servo.class, "flower_intake");
 
 
         // Map IMU
@@ -525,6 +527,8 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
         boolean armIsUp = false;     // Tracks whether the arm is currently up or down
         boolean previousAButton = false;
+        boolean previousFlowerButton = false;
+        boolean flowerIsUp = true;
 
         // Slow mode starts disabled
         boolean slowMode = false;
@@ -752,9 +756,27 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
             previousOptions = optionsPressed;
 
+            // -------------------------------------------------
+            // 11.0 FLOWER MECHANISM
+            // -------------------------------------------------
+            boolean flowerButton = gamepad1.cross;
+            /* work later
+            if (flowerButton && !previousFlowerButton) {
+
+                // Flip the state (if false -> becomes true; if true -> becomes false)
+                flowerIsUp = !flowerIsUp;
+                double flowerDownAngle;
+//                double flowerUpAngle;
+                if (flowerIsUp) {
+                    flowerIntake.setPosition(flowerDownAngle/300); // Move arm UP and hold
+                } else {
+                    flowerIntake.setPosition(flowerUpAngle/300); // Move arm DOWN and hold
+                }
+            }
+            */
 
             // -------------------------------------------------
-            // 11. INTAKE CONTROL
+            // 11.A INTAKE CONTROL
             // -------------------------------------------------
 
             // Right trigger runs intake forward.
@@ -768,9 +790,10 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
 
             // Control both intake servos
-            leftIntakeServo.setPower(-intakePower);
-            rightIntakeServo.setPower(-intakePower);
-
+            if (flowerIsUp) {
+                leftIntakeServo.setPower(-intakePower);
+                rightIntakeServo.setPower(-intakePower);
+            }
 
             // -------------------------------------------------
             // 12. LAUNCHER CONTROL

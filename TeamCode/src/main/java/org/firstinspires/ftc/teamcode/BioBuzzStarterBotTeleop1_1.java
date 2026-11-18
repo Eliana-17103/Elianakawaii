@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @TeleOp(name = "BioBuzz Mecanum TeleOp 1", group = "TeleOp")
-public class BioBuzzStarterBotTeleop11 extends LinearOpMode {
+public class BioBuzzStarterBotTeleop1_1 extends LinearOpMode {
 
     private DcMotor leftFront, leftBack, rightFront, rightBack;
     private DcMotor intake;
