@@ -70,12 +70,12 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
 
 @Autonomous(name = "SKELETON Auto", group = "Skeleton")
-public class SkeletonAuto extends OpMode {
+public class SkeletonAuto_MOD2 extends OpMode {
 
     // ==========================================================================================
     // 1. PATHS + ROBOT PARTS
     // ==========================================================================================
-    private final SkeletonPaths paths = new SkeletonPaths(false);   // LIVE: false = BLUE, true = RED
+    private final SkeletonPaths_MOD2 paths = new SkeletonPaths_MOD2(false);   // LIVE: false = BLUE, true = RED
 
     private Follower follower;       // LIVE: Pedro (drives the robot)
     private IMU imu;                 // LIVE: saves the starting heading for TeleOp
@@ -171,14 +171,14 @@ public class SkeletonAuto extends OpMode {
     // ==========================================================================================
     @Override
     public void init() {
-        Hubs.enableBulkReads(hardwareMap);   // LIVE: faster loops (see Hubs.java)
+        Hubs_MOD2.enableBulkReads(hardwareMap);   // LIVE: faster loops (see Hubs.java)
         Scheduler.reset();                   // clear leftovers from any earlier OpMode
 
         // Save the starting pose + heading so TeleOp's field-centric can use them.
-        GlobalState.reset();
-        imu = GlobalState.initImu(hardwareMap);
-        GlobalState.startPose = GlobalState.copy(paths.startPose);
-        GlobalState.startImuYaw = GlobalState.yaw(imu);
+        GlobalState_MOD2.reset();
+        imu = GlobalState_MOD2.initImu(hardwareMap);
+        GlobalState_MOD2.startPose = GlobalState_MOD2.copy(paths.startPose);
+        GlobalState_MOD2.startImuYaw = GlobalState_MOD2.yaw(imu);
 
         follower = Constants.create(hardwareMap);
         follower.setPose(paths.startPose);
@@ -193,8 +193,8 @@ public class SkeletonAuto extends OpMode {
 
     @Override
     public void start() {
-        GlobalState.startImuYaw = GlobalState.yaw(imu);   // re-read right at start
-        GlobalState.autoStarted = true;
+        GlobalState_MOD2.startImuYaw = GlobalState_MOD2.yaw(imu);   // re-read right at start
+        GlobalState_MOD2.autoStarted = true;
         schedule(routine());                              // hand the routine to Ivy
     }
 
@@ -214,8 +214,8 @@ public class SkeletonAuto extends OpMode {
     @Override
     public void stop() {
         // Save where we ended up so TeleOp starts from the right place.
-        if (follower != null) GlobalState.endPose = GlobalState.copy(follower.pose());
-        if (imu != null) GlobalState.endImuYaw = GlobalState.yaw(imu);
+        if (follower != null) GlobalState_MOD2.endPose = GlobalState_MOD2.copy(follower.pose());
+        if (imu != null) GlobalState_MOD2.endImuYaw = GlobalState_MOD2.yaw(imu);
 
         // Turn mechanisms off (uncomment with the parts you use):
         // if (launcher != null) launcher.halt();

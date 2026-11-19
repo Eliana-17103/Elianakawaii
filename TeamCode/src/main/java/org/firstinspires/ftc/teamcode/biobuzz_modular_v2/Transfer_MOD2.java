@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  *   Direct methods (TeleOp):  run(), halt()
  *   Ivy commands (Auto):      feed(), stopFeed(), feedFor(ms), feedFor()
  */
-public class Transfer {
+public class Transfer_MOD2 {
 
     public static double POWER = -1.0;
     public static int RUN_MS = 3000;     // how long feedFor() runs (about 3 seconds)
@@ -22,7 +22,7 @@ public class Transfer {
     private final DcMotor motor;
     private boolean running = false;
 
-    public Transfer(HardwareMap hardwareMap) {
+    public Transfer_MOD2(HardwareMap hardwareMap) {
         motor = hardwareMap.get(DcMotor.class, "transfer");
     }
 

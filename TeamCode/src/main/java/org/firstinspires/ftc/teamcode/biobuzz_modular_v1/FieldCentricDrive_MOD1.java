@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /** Mecanum drive, field-centric. Pass in the driver-frame heading (see HeadingFrame). */
-public class FieldCentricDrive {
+public class FieldCentricDrive_MOD1 {
     public static double DEADZONE = 0.05;
     public static double NORMAL_SPEED = 1.0, SLOW_SPEED = 0.35;
     public static double STRAFE_BOOST = 1.1;
@@ -16,7 +16,7 @@ public class FieldCentricDrive {
     private boolean slowMode = false;
     private double lastFl, lastBl, lastFr, lastBr;
 
-    public FieldCentricDrive(HardwareMap hw) {
+    public FieldCentricDrive_MOD1(HardwareMap hw) {
         leftFront  = hw.get(DcMotor.class, "left_front_drive");
         leftBack   = hw.get(DcMotor.class, "left_back_drive");
         rightFront = hw.get(DcMotor.class, "right_front_drive");

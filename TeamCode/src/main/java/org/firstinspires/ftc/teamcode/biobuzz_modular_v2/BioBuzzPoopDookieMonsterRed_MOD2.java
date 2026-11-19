@@ -14,16 +14,16 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
 
 @Autonomous
-public class BioBuzzPoopDookieMonsterRed extends OpMode {
+public class BioBuzzPoopDookieMonsterRed_MOD2 extends OpMode {
 
     // Poses and paths live in AutoPaths.java. Multi-step actions live in Actions.java.
-    private final AutoPaths paths = new AutoPaths(true);   // true = RED (every pose mirrored)
+    private final AutoPaths_MOD2 paths = new AutoPaths_MOD2(true);   // true = RED (every pose mirrored)
 
     private Follower follower;
-    private Launcher launcher;
-    private Transfer transfer;
-    private Intake intake;
-    private Actions actions;
+    private Launcher_MOD2 launcher;
+    private Transfer_MOD2 transfer;
+    private Intake_MOD2 intake;
+    private Actions_MOD2 actions;
     private IMU imu;
 
     // ======================= ROUTINE =======================
@@ -40,28 +40,28 @@ public class BioBuzzPoopDookieMonsterRed extends OpMode {
     // ======================= OPMODE =======================
     @Override
     public void init() {
-        Hubs.enableBulkReads(hardwareMap);   // faster loops (see Hubs.java)
+        Hubs_MOD2.enableBulkReads(hardwareMap);   // faster loops (see Hubs.java)
         Scheduler.reset();
 
         // Remember where/which way we started so TeleOp can use it
-        GlobalState.reset();
-        imu = GlobalState.initImu(hardwareMap);
-        GlobalState.startPose = GlobalState.copy(paths.startPose);
-        GlobalState.startImuYaw = GlobalState.yaw(imu);
+        GlobalState_MOD2.reset();
+        imu = GlobalState_MOD2.initImu(hardwareMap);
+        GlobalState_MOD2.startPose = GlobalState_MOD2.copy(paths.startPose);
+        GlobalState_MOD2.startImuYaw = GlobalState_MOD2.yaw(imu);
 
         follower = Constants.create(hardwareMap);
         follower.setPose(paths.startPose);
 
-        launcher = new Launcher(hardwareMap);
-        transfer = new Transfer(hardwareMap);
-        intake   = new Intake(hardwareMap);
-        actions  = new Actions(launcher, transfer, intake);
+        launcher = new Launcher_MOD2(hardwareMap);
+        transfer = new Transfer_MOD2(hardwareMap);
+        intake   = new Intake_MOD2(hardwareMap);
+        actions  = new Actions_MOD2(launcher, transfer, intake);
     }
 
     @Override
     public void start() {
-        GlobalState.startImuYaw = GlobalState.yaw(imu);   // re-read right at start
-        GlobalState.autoStarted = true;
+        GlobalState_MOD2.startImuYaw = GlobalState_MOD2.yaw(imu);   // re-read right at start
+        GlobalState_MOD2.autoStarted = true;
         schedule(routine());
     }
 
@@ -81,8 +81,8 @@ public class BioBuzzPoopDookieMonsterRed extends OpMode {
     @Override
     public void stop() {
         // Save where we ended up for TeleOp
-        if (follower != null) GlobalState.endPose = GlobalState.copy(follower.pose());
-        if (imu != null) GlobalState.endImuYaw = GlobalState.yaw(imu);
+        if (follower != null) GlobalState_MOD2.endPose = GlobalState_MOD2.copy(follower.pose());
+        if (imu != null) GlobalState_MOD2.endImuYaw = GlobalState_MOD2.yaw(imu);
         if (transfer != null) transfer.halt();
         if (launcher != null) launcher.halt();
         if (intake != null) intake.halt();

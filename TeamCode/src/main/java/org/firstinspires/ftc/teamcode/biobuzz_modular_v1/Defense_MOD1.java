@@ -7,13 +7,13 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /** Defense arm servo. Angles are in degrees on a 300-degree servo; positions are clamped to 0..1. */
-public class Defense {
+public class Defense_MOD1 {
     public static double UP_DEG = -30, DOWN_DEG = 90, RANGE_DEG = 300;
 
     private final Servo servo;
     private boolean up = false;
 
-    public Defense(HardwareMap hw) {
+    public Defense_MOD1(HardwareMap hw) {
         servo = hw.get(Servo.class, "defense");
     }
 

@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  *   Direct methods (TeleOp):  setPower(p), halt(), setServosEnabled(on)
  *   Ivy commands (Auto):      collect(), eject(), off(), collectFor(ms)
  */
-public class Intake {
+public class Intake_MOD2 {
 
     public static double COLLECT_POWER = 1.0;
 
@@ -24,7 +24,7 @@ public class Intake {
     private boolean servosEnabled = true;   // set false when the flower mechanism is down
     private double power = 0;
 
-    public Intake(HardwareMap hardwareMap) {
+    public Intake_MOD2(HardwareMap hardwareMap) {
         motor      = hardwareMap.get(DcMotor.class, "intake");
         leftServo  = hardwareMap.get(CRServo.class, "left_intake_servo");
         rightServo = hardwareMap.get(CRServo.class, "right_intake_servo");

@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /** Mecanum drive, field-centric. Pass the joystick values and the driver-frame heading each loop. */
-public class FieldCentricDrive {
+public class FieldCentricDrive_MOD2 {
 
     public static double DEADZONE = 0.05;
     public static double NORMAL_SPEED = 1.0, SLOW_SPEED = 0.35;
@@ -13,7 +13,7 @@ public class FieldCentricDrive {
     private final DcMotor leftFront, leftBack, rightFront, rightBack;
     private boolean slowMode = false;
 
-    public FieldCentricDrive(HardwareMap hardwareMap) {
+    public FieldCentricDrive_MOD2(HardwareMap hardwareMap) {
         leftFront  = hardwareMap.get(DcMotor.class, "left_front_drive");
         leftBack   = hardwareMap.get(DcMotor.class, "left_back_drive");
         rightFront = hardwareMap.get(DcMotor.class, "right_front_drive");

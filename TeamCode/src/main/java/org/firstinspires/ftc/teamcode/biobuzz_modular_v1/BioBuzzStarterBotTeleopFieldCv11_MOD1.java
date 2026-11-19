@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
  *   left bumper = transfer override
  */
 @TeleOp(name = "BioBuzz Mecanum TeleOp 1 FC v1.1", group = "TeleOp")
-public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
+public class BioBuzzStarterBotTeleopFieldCv11_MOD1 extends LinearOpMode {
 
     // ---- settings ----
     // false: hold left bumper to run transfer (only while launcher is at speed)
@@ -32,24 +32,24 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
         for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
             hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
-        FieldCentricDrive drive = new FieldCentricDrive(hardwareMap);
-        Intake intake = new Intake(hardwareMap);
-        Launcher launcher = new Launcher(hardwareMap);
-        Transfer transfer = new Transfer(hardwareMap);
-        Defense defense = new Defense(hardwareMap);
-        HiveTargeting hive = new HiveTargeting();
+        FieldCentricDrive_MOD1 drive = new FieldCentricDrive_MOD1(hardwareMap);
+        Intake_MOD1 intake = new Intake_MOD1(hardwareMap);
+        Launcher_MOD1 launcher = new Launcher_MOD1(hardwareMap);
+        Transfer_MOD1 transfer = new Transfer_MOD1(hardwareMap);
+        Defense_MOD1 defense = new Defense_MOD1(hardwareMap);
+        HiveTargeting_MOD1 hive = new HiveTargeting_MOD1();
 
         Servo flowerIntake = hardwareMap.get(Servo.class, "flower_intake");
-        IMU imu = GlobalState.initImu(hardwareMap);
-        HeadingFrame frame = new HeadingFrame(imu);
+        IMU imu = GlobalState_MOD1.initImu(hardwareMap);
+        HeadingFrame_MOD1 frame = new HeadingFrame_MOD1(imu);
 
         Follower follower = Constants.create(hardwareMap);
         follower.setPose(new Pose(0, 0, 0));   // replaced below once we know whether auto ran
 
         // ---------------- edge detectors ----------------
-        Edge eAlliance = new Edge(), eCarry = new Edge(), eHive = new Edge(), eFace = new Edge(),
-                eSlow = new Edge(), eOptions = new Edge(), eDefense = new Edge(),
-                eUp = new Edge(), eDown = new Edge(), eTransfer = new Edge();
+        Edge_MOD1 eAlliance = new Edge_MOD1(), eCarry = new Edge_MOD1(), eHive = new Edge_MOD1(), eFace = new Edge_MOD1(),
+                eSlow = new Edge_MOD1(), eOptions = new Edge_MOD1(), eDefense = new Edge_MOD1(),
+                eUp = new Edge_MOD1(), eDown = new Edge_MOD1(), eTransfer = new Edge_MOD1();
 
         boolean useAutoData = true;
 
@@ -58,13 +58,13 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
             if (eAlliance.rising(gamepad2.b)) hive.toggleAlliance();
             if (eCarry.rising(gamepad2.x)) useAutoData = !useAutoData;
 
-            boolean dataOk = HeadingFrame.autoDataAvailable();
+            boolean dataOk = HeadingFrame_MOD1.autoDataAvailable();
             telemetry.addData("Alliance", hive.isRed() ? "RED" : "BLUE");
             telemetry.addData("Auto data available", dataOk);
             telemetry.addData("Using auto data (G2 X)", useAutoData && dataOk);
             if (dataOk) {
-                telemetry.addData("Auto rotation (IMU)", "%.1f deg", Math.toDegrees(GlobalState.imuRotationDuringAuto()));
-                telemetry.addData("Auto rotation (Pedro)", "%.1f deg", Math.toDegrees(GlobalState.pedroRotationDuringAuto()));
+                telemetry.addData("Auto rotation (IMU)", "%.1f deg", Math.toDegrees(GlobalState_MOD1.imuRotationDuringAuto()));
+                telemetry.addData("Auto rotation (Pedro)", "%.1f deg", Math.toDegrees(GlobalState_MOD1.pedroRotationDuringAuto()));
             }
             telemetry.addLine("Gamepad 2 B: Switch Alliance | Gamepad 2 X: use/ignore auto data");
             telemetry.update();
@@ -76,7 +76,7 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
 
         // ---------------- establish heading frame + pose ----------------
         frame.establish(useAutoData);
-        if (frame.isCarriedFromAuto()) follower.setPose(GlobalState.endPose);
+        if (frame.isCarriedFromAuto()) follower.setPose(GlobalState_MOD1.endPose);
         follower.update();
 
         boolean flowerIsUp = true;
@@ -95,7 +95,7 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
             // ---------- hive ----------
             if (eHive.rising(gamepad2.y)) hive.toggleHive();
             if (eFace.rising(gamepad1.x)) hive.startTurn(follower);
-            hive.update(follower, FieldCentricDrive.stickMagnitude(gamepad1));
+            hive.update(follower, FieldCentricDrive_MOD1.stickMagnitude(gamepad1));
 
             // ---------- drive (Pedro owns the drivetrain while turning to the hive) ----------
             if (eSlow.rising(gamepad1.b)) drive.toggleSlowMode();

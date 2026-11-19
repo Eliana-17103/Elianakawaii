@@ -4,7 +4,7 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 
 /** Alliance / hive selection and "turn to face the hive" (uses Pedro's hold, like your original). */
-public class HiveTargeting {
+public class HiveTargeting_MOD2 {
 
     // ---- hive coordinates (red values are still placeholders, as in your original) ----
     public static double BLUEHIVE1_X = 84,   BLUEHIVE1_Y = 86;
@@ -21,7 +21,7 @@ public class HiveTargeting {
     private boolean turning = false;
     private double targetHeading = 0, headingError = 0;
 
-    public HiveTargeting() { updateCoordinates(); }
+    public HiveTargeting_MOD2() { updateCoordinates(); }
 
     public boolean isRed()     { return red; }
     public boolean isTurning() { return turning; }
@@ -48,7 +48,7 @@ public class HiveTargeting {
     public void startTurn(Follower follower) {
         if (turning) return;
         Pose p = follower.pose();
-        targetHeading = GlobalState.wrap(Math.atan2(hiveY - p.y(), hiveX - p.x()));
+        targetHeading = GlobalState_MOD2.wrap(Math.atan2(hiveY - p.y(), hiveX - p.x()));
         follower.hold(new Pose(p.x(), p.y(), targetHeading));
         turning = true;
     }
@@ -56,7 +56,7 @@ public class HiveTargeting {
     /** Call every loop. Ends the turn when lined up, or when the driver pushes a stick. */
     public void update(Follower follower, double stickPush) {
         if (!turning) return;
-        headingError = GlobalState.wrap(targetHeading - follower.pose().heading());
+        headingError = GlobalState_MOD2.wrap(targetHeading - follower.pose().heading());
         if (Math.abs(headingError) < HEADING_TOLERANCE || stickPush > CANCEL_STICK_PUSH) {
             turning = false;
             follower.stop();

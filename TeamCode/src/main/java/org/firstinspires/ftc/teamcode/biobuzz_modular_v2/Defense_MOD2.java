@@ -12,14 +12,14 @@ import com.qualcomm.robotcore.hardware.Servo;
  *   Direct methods (TeleOp):  toggle(), setUp(boolean)
  *   Ivy commands (Auto):      raise(), lower()
  */
-public class Defense {
+public class Defense_MOD2 {
 
     public static double UP_DEG = -30, DOWN_DEG = 90, RANGE_DEG = 300;
 
     private final Servo servo;
     private boolean up = false;
 
-    public Defense(HardwareMap hardwareMap) {
+    public Defense_MOD2(HardwareMap hardwareMap) {
         servo = hardwareMap.get(Servo.class, "defense");
     }
 

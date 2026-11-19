@@ -10,21 +10,21 @@ import com.qualcomm.robotcore.hardware.IMU;
  *
  * The robot's BACK is treated as its front (same as your original TeleOp).
  */
-public class HeadingFrame {
+public class HeadingFrame_MOD2 {
 
     private final IMU imu;
     private double zeroYaw = 0;
     private boolean usingAutoData = false;
 
-    public HeadingFrame(IMU imu) { this.imu = imu; }
+    public HeadingFrame_MOD2(IMU imu) { this.imu = imu; }
 
     /** Call once when TeleOp starts. */
     public void establish(boolean useAutoData) {
-        double yawNow = GlobalState.yaw(imu);
-        usingAutoData = useAutoData && GlobalState.autoStarted;
+        double yawNow = GlobalState_MOD2.yaw(imu);
+        usingAutoData = useAutoData && GlobalState_MOD2.autoStarted;
         if (usingAutoData) {
             // The robot has turned rotationDuringAuto() since auto started, so back up by that much.
-            zeroYaw = GlobalState.wrap(yawNow - GlobalState.rotationDuringAuto());
+            zeroYaw = GlobalState_MOD2.wrap(yawNow - GlobalState_MOD2.rotationDuringAuto());
         } else {
             zeroYaw = yawNow;
         }
@@ -33,8 +33,8 @@ public class HeadingFrame {
     public boolean isUsingAutoData() { return usingAutoData; }
 
     /** "The robot is facing the way it did at the start of auto right now." */
-    public void rezero() { zeroYaw = GlobalState.yaw(imu); }
+    public void rezero() { zeroYaw = GlobalState_MOD2.yaw(imu); }
 
-    public double heading()      { return GlobalState.wrap(GlobalState.yaw(imu) - zeroYaw); }
+    public double heading()      { return GlobalState_MOD2.wrap(GlobalState_MOD2.yaw(imu) - zeroYaw); }
     public double driveHeading() { return heading() + Math.PI; }
 }

@@ -11,8 +11,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
  * Data that Autonomous leaves behind for TeleOp (static = it survives between OpModes).
  * We save plain numbers/poses, NOT the Follower itself, because TeleOp builds its own Follower.
  */
-public final class GlobalState {
-    private GlobalState() {}
+public final class GlobalState_MOD2 {
+    private GlobalState_MOD2() {}
 
     public static boolean autoStarted = false;          // true once Auto pressed START
     public static Pose startPose = new Pose(0, 0, 0);   // Pedro pose at the start of auto

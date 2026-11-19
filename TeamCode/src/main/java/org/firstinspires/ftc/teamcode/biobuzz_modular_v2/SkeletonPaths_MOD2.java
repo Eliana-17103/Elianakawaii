@@ -38,7 +38,7 @@ package org.firstinspires.ftc.teamcode.biobuzz_modular_v2;
 import com.pedropathing.api.PoseFactory;
 import com.pedropathing.math.Pose;
 
-public class SkeletonPaths {
+public class SkeletonPaths_MOD2 {
 
     public static double MIRROR_LINE = 70.75;          // center of the field
 
@@ -49,7 +49,7 @@ public class SkeletonPaths {
     // public final Pose controlPose;                   // a curve's "bend" point
     // public final Pose parkPose;
 
-    public SkeletonPaths(boolean mirrorForRed) {
+    public SkeletonPaths_MOD2(boolean mirrorForRed) {
         PoseFactory p = PoseFactory.degrees();
         if (mirrorForRed) p = p.mirrorX(MIRROR_LINE);
 

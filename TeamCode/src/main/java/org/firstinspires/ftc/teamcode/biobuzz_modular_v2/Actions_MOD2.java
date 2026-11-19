@@ -10,13 +10,13 @@ import com.pedropathing.ivy.Command;
  *
  * TO ADD A NEW ACTION: copy one of the methods below, rename it, and change the steps.
  */
-public class Actions {
+public class Actions_MOD2 {
 
-    private final Launcher launcher;
-    private final Transfer transfer;
-    private final Intake intake;
+    private final Launcher_MOD2 launcher;
+    private final Transfer_MOD2 transfer;
+    private final Intake_MOD2 intake;
 
-    public Actions(Launcher launcher, Transfer transfer, Intake intake) {
+    public Actions_MOD2(Launcher_MOD2 launcher, Transfer_MOD2 transfer, Intake_MOD2 intake) {
         this.launcher = launcher;
         this.transfer = transfer;
         this.intake = intake;

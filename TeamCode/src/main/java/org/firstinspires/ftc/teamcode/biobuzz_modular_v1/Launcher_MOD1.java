@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * Hub-side velocity PIDF (yours: 40, 0, 0, 12.5) with F scaled for battery voltage.
  * Call update() every loop.
  */
-public class Launcher {
+public class Launcher_MOD1 {
     // ---- tunables ----
     public static double P = 40, I = 0, D = 0, F_BASE = 12.5;
     public static double NOMINAL_VOLTAGE = 12.5;   // battery voltage F_BASE was tuned at
@@ -29,7 +29,7 @@ public class Launcher {
     private final ElapsedTime voltTimer = new ElapsedTime();
     private double target = 0, appliedVolts, setting = DEFAULT_SETTING;
 
-    public Launcher(HardwareMap hw) {
+    public Launcher_MOD1(HardwareMap hw) {
         motor = hw.get(DcMotorEx.class, "launcher");
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

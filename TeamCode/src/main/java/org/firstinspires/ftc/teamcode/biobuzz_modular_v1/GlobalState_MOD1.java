@@ -16,8 +16,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
  *
  * Static fields live until the robot controller app restarts / robot powers off.
  */
-public final class GlobalState {
-    private GlobalState() {}
+public final class GlobalState_MOD1 {
+    private GlobalState_MOD1() {}
 
     // ---- written by Auto ----
     public static boolean autoStarted = false;        // true once Auto's start() ran

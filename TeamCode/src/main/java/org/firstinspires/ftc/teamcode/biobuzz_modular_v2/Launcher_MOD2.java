@@ -22,7 +22,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
  * feedforward term F is scaled by NOMINAL_VOLTAGE / current voltage, so the shot speed
  * stays about the same from a full battery to a tired one.
  */
-public class Launcher {
+public class Launcher_MOD2 {
 
     // ---- tunables ----
     public static double AUTO_SPEED = 1280;          // speed used by spinUp() in auto
@@ -48,7 +48,7 @@ public class Launcher {
     // for waitUntilReady()
     private long readyStartedAt = 0, atSpeedSince = -1;
 
-    public Launcher(HardwareMap hardwareMap) {
+    public Launcher_MOD2(HardwareMap hardwareMap) {
         motor = hardwareMap.get(DcMotorEx.class, "launcher");
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);

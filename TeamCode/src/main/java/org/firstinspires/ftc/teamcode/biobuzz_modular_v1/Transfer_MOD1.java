@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /** Transfer motor: feeds balls into the launcher. Supports hold-to-run and timed runs. */
-public class Transfer {
+public class Transfer_MOD1 {
     public static double POWER = -1.0;
     public static int RUN_MS = 3000;   // timed run length (~3 s after the launcher is at speed)
 
@@ -16,7 +16,7 @@ public class Transfer {
     private boolean running = false, timed = false;
     private int timedMs = RUN_MS;
 
-    public Transfer(HardwareMap hw) {
+    public Transfer_MOD1(HardwareMap hw) {
         motor = hw.get(DcMotor.class, "transfer");
     }
 

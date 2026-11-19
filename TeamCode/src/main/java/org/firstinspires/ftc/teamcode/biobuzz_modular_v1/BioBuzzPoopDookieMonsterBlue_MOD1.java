@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
 
 @Autonomous
-public class BioBuzzPoopDookieMonsterBlue extends OpMode {
+public class BioBuzzPoopDookieMonsterBlue_MOD1 extends OpMode {
 
     // ============================== POSES (yours, unchanged) ==============================
     private final PoseFactory p = PoseFactory.degrees();
@@ -35,9 +35,9 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
 
     // ============================== SUBSYSTEMS ==============================
     private Follower follower;
-    private Launcher launcher;
-    private Transfer transfer;
-    private ShooterCommands shooter;
+    private Launcher_MOD1 launcher;
+    private Transfer_MOD1 transfer;
+    private ShooterCommands_MOD1 shooter;
     private IMU imu;
 
     // ============================== PATHS (yours, unchanged) ==============================
@@ -67,34 +67,34 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
         Scheduler.reset();   // Scheduler is static; clear anything left from a previous OpMode
 
         // ---- BEFORE ANYTHING ELSE: record the global reference frame for TeleOp ----
-        GlobalState.reset();
-        GlobalState.startPose = GlobalState.copy(startPose);
-        imu = GlobalState.initImu(hardwareMap);
-        GlobalState.startImuYaw = GlobalState.yaw(imu);
+        GlobalState_MOD1.reset();
+        GlobalState_MOD1.startPose = GlobalState_MOD1.copy(startPose);
+        imu = GlobalState_MOD1.initImu(hardwareMap);
+        GlobalState_MOD1.startImuYaw = GlobalState_MOD1.yaw(imu);
 
         follower = Constants.create(hardwareMap);
         follower.setPose(startPose);
         follower.update();
 
-        launcher = new Launcher(hardwareMap);
-        transfer = new Transfer(hardwareMap);
-        shooter  = new ShooterCommands(launcher, transfer);
+        launcher = new Launcher_MOD1(hardwareMap);
+        transfer = new Transfer_MOD1(hardwareMap);
+        shooter  = new ShooterCommands_MOD1(launcher, transfer);
     }
 
     @Override
     public void init_loop() {
         telemetry.addData("Start pose", "%.1f, %.1f, %.0f deg",
                 startPose.x(), startPose.y(), Math.toDegrees(startPose.heading()));
-        telemetry.addData("IMU yaw (deg)", "%.1f", Math.toDegrees(GlobalState.yaw(imu)));
+        telemetry.addData("IMU yaw (deg)", "%.1f", Math.toDegrees(GlobalState_MOD1.yaw(imu)));
         telemetry.update();
     }
 
     @Override
     public void start() {
         // Re-capture right at start (robot may have been nudged during init) and mark auto as live.
-        GlobalState.startImuYaw = GlobalState.yaw(imu);
-        GlobalState.startPose = GlobalState.copy(startPose);
-        GlobalState.autoStarted = true;
+        GlobalState_MOD1.startImuYaw = GlobalState_MOD1.yaw(imu);
+        GlobalState_MOD1.startPose = GlobalState_MOD1.copy(startPose);
+        GlobalState_MOD1.autoStarted = true;
 
         schedule(routine());
     }
@@ -115,9 +115,9 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
     @Override
     public void stop() {
         // Save where we ended up for TeleOp (runs even if auto is cut short).
-        if (follower != null) GlobalState.endPose = GlobalState.copy(follower.pose());
-        if (imu != null) GlobalState.endImuYaw = GlobalState.yaw(imu);
-        GlobalState.endTimeMs = System.currentTimeMillis();
+        if (follower != null) GlobalState_MOD1.endPose = GlobalState_MOD1.copy(follower.pose());
+        if (imu != null) GlobalState_MOD1.endImuYaw = GlobalState_MOD1.yaw(imu);
+        GlobalState_MOD1.endTimeMs = System.currentTimeMillis();
 
         if (transfer != null) transfer.stop();
         if (launcher != null) launcher.stop();

@@ -15,8 +15,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  *   (for example after you change a motor power). Same numbers, noticeably faster loops, which
  *   helps Pedro and the flywheel velocity check react sooner.
  */
-public final class Hubs {
-    private Hubs() {}
+public final class Hubs_MOD2 {
+    private Hubs_MOD2() {}
 
     public static void enableBulkReads(HardwareMap hardwareMap) {
         for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {

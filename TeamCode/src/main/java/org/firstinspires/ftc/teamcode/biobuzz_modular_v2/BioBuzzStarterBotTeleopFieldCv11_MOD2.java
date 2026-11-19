@@ -29,34 +29,34 @@ import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
  * ====================================================
  */
 @TeleOp(name = "BioBuzz Mecanum TeleOp 1 FC v1.1", group = "TeleOp")
-public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
+public class BioBuzzStarterBotTeleopFieldCv11_MOD2 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
 
-        Hubs.enableBulkReads(hardwareMap);   // faster loops (see Hubs.java)
+        Hubs_MOD2.enableBulkReads(hardwareMap);   // faster loops (see Hubs.java)
 
         // ---------------- robot parts ----------------
-        FieldCentricDrive drive = new FieldCentricDrive(hardwareMap);
-        Intake intake = new Intake(hardwareMap);
-        Launcher launcher = new Launcher(hardwareMap);
-        Transfer transfer = new Transfer(hardwareMap);
-        Defense defense = new Defense(hardwareMap);
-        HiveTargeting hive = new HiveTargeting();
+        FieldCentricDrive_MOD2 drive = new FieldCentricDrive_MOD2(hardwareMap);
+        Intake_MOD2 intake = new Intake_MOD2(hardwareMap);
+        Launcher_MOD2 launcher = new Launcher_MOD2(hardwareMap);
+        Transfer_MOD2 transfer = new Transfer_MOD2(hardwareMap);
+        Defense_MOD2 defense = new Defense_MOD2(hardwareMap);
+        HiveTargeting_MOD2 hive = new HiveTargeting_MOD2();
 
         Servo flowerIntake = hardwareMap.get(Servo.class, "flower_intake");
 
-        IMU imu = GlobalState.initImu(hardwareMap);
-        HeadingFrame frame = new HeadingFrame(imu);
+        IMU imu = GlobalState_MOD2.initImu(hardwareMap);
+        HeadingFrame_MOD2 frame = new HeadingFrame_MOD2(imu);
 
         Follower follower = Constants.create(hardwareMap);
         follower.setPose(new Pose(0, 0, 0));   // replaced after START if auto ran
 
         // ---------------- one Button per physical button ----------------
-        Button allianceButton = new Button(), autoDataButton = new Button();
-        Button hiveButton = new Button(), faceHiveButton = new Button();
-        Button slowButton = new Button(), rezeroButton = new Button(), defenseButton = new Button();
-        Button speedUpButton = new Button(), speedDownButton = new Button();
+        Button_MOD2 allianceButton = new Button_MOD2(), autoDataButton = new Button_MOD2();
+        Button_MOD2 hiveButton = new Button_MOD2(), faceHiveButton = new Button_MOD2();
+        Button_MOD2 slowButton = new Button_MOD2(), rezeroButton = new Button_MOD2(), defenseButton = new Button_MOD2();
+        Button_MOD2 speedUpButton = new Button_MOD2(), speedDownButton = new Button_MOD2();
 
         boolean useAutoData = true;
 
@@ -66,10 +66,10 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
             if (autoDataButton.pressed(gamepad2.x)) useAutoData = !useAutoData;
 
             telemetry.addData("Alliance (G2 B)", hive.isRed() ? "RED" : "BLUE");
-            telemetry.addData("Auto data available", GlobalState.autoStarted);
-            telemetry.addData("Use auto data (G2 X)", useAutoData && GlobalState.autoStarted);
-            if (GlobalState.autoStarted) {
-                telemetry.addData("Auto turned the robot", "%.1f deg", Math.toDegrees(GlobalState.rotationDuringAuto()));
+            telemetry.addData("Auto data available", GlobalState_MOD2.autoStarted);
+            telemetry.addData("Use auto data (G2 X)", useAutoData && GlobalState_MOD2.autoStarted);
+            if (GlobalState_MOD2.autoStarted) {
+                telemetry.addData("Auto turned the robot", "%.1f deg", Math.toDegrees(GlobalState_MOD2.rotationDuringAuto()));
             }
             telemetry.update();
             idle();
@@ -80,7 +80,7 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
 
         // ---------------- set up field-centric + pose ----------------
         frame.establish(useAutoData);
-        if (frame.isUsingAutoData()) follower.setPose(GlobalState.endPose);
+        if (frame.isUsingAutoData()) follower.setPose(GlobalState_MOD2.endPose);
 
         boolean flowerIsUp = true;
 
@@ -97,7 +97,7 @@ public class BioBuzzStarterBotTeleopFieldCv11 extends LinearOpMode {
 
             follower.update();
             launcher.update();   // battery-sag correction
-            double push = FieldCentricDrive.stickPush(stickX, stickY, turnX);
+            double push = FieldCentricDrive_MOD2.stickPush(stickX, stickY, turnX);
 
             // ---- hive ----
             if (hiveButton.pressed(gamepad2.y)) hive.toggleHive();

@@ -7,16 +7,16 @@ import com.pedropathing.ivy.Command;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /** Ivy commands for shooting (Auto uses these; TeleOp doesn't need Ivy). */
-public class ShooterCommands {
+public class ShooterCommands_MOD1 {
     public static int STABLE_MS = 40;          // flywheel must stay in band this long
     public static int READY_TIMEOUT_MS = 2500; // transfer runs anyway after this, so auto never hangs
     public static int FINISH_WAIT_MS = 300;    // let the last ball clear the wheel
 
-    private final Launcher launcher;
-    private final Transfer transfer;
+    private final Launcher_MOD1 launcher;
+    private final Transfer_MOD1 transfer;
     private final ElapsedTime stable = new ElapsedTime(), timeout = new ElapsedTime();
 
-    public ShooterCommands(Launcher launcher, Transfer transfer) {
+    public ShooterCommands_MOD1(Launcher_MOD1 launcher, Transfer_MOD1 transfer) {
         this.launcher = launcher;
         this.transfer = transfer;
     }
@@ -39,7 +39,7 @@ public class ShooterCommands {
         return sequential(
                 waitReady(),
                 instant(transfer::run),
-                waitMs(Transfer.RUN_MS),
+                waitMs(Transfer_MOD1.RUN_MS),
                 instant(transfer::stop),
                 waitMs(FINISH_WAIT_MS)
         );

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /** Alliance/hive selection plus "turn to face the hive" using Pedro's hold(). */
-public class HiveTargeting {
+public class HiveTargeting_MOD1 {
     // ---- coordinates ----
     public static double BLUEHIVE1_X = 84,   BLUEHIVE1_Y = 86;
     public static double BLUEHIVE2_X = 84,   BLUEHIVE2_Y = 55;
@@ -27,7 +27,7 @@ public class HiveTargeting {
     private double targetHeading = 0, headingError = 0;
     private final ElapsedTime timer = new ElapsedTime();
 
-    public HiveTargeting() { updateCoordinates(); }
+    public HiveTargeting_MOD1() { updateCoordinates(); }
 
     public boolean isTurning() { return turning; }
     public boolean isRed()     { return red; }
@@ -52,7 +52,7 @@ public class HiveTargeting {
     public void startTurn(Follower follower) {
         if (turning) return;
         Pose p = follower.pose();
-        targetHeading = GlobalState.wrap(Math.atan2(hiveY - p.y(), hiveX - p.x()) + LAUNCHER_FACING_OFFSET_RAD);
+        targetHeading = GlobalState_MOD1.wrap(Math.atan2(hiveY - p.y(), hiveX - p.x()) + LAUNCHER_FACING_OFFSET_RAD);
         follower.hold(new Pose(p.x(), p.y(), targetHeading));
         turning = true;
         timer.reset();
@@ -61,7 +61,7 @@ public class HiveTargeting {
     /** Call every loop. Ends the turn when aligned, timed out, or the driver grabs a stick. */
     public void update(Follower follower, double stickMagnitude) {
         if (!turning) return;
-        headingError = GlobalState.wrap(targetHeading - follower.pose().heading());
+        headingError = GlobalState_MOD1.wrap(targetHeading - follower.pose().heading());
         if (Math.abs(headingError) < HEADING_TOLERANCE
                 || timer.milliseconds() > TURN_TIMEOUT_MS
                 || stickMagnitude > CANCEL_STICK) {

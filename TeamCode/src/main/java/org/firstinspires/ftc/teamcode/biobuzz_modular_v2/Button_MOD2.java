@@ -9,7 +9,7 @@ package org.firstinspires.ftc.teamcode.biobuzz_modular_v2;
  *
  * Use one Button object per physical button.
  */
-public class Button {
+public class Button_MOD2 {
     private boolean wasDown = false;
 
     public boolean pressed(boolean isDownNow) {

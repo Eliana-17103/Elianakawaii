@@ -17,7 +17,7 @@ import com.pedropathing.paths.Path;
  * TO CHANGE A ROUTE:   edit the numbers in the pose list.
  * TO ADD A NEW PATH:   1) add a pose (if you need a new place)   2) copy a path method and rename it.
  */
-public class AutoPaths {
+public class AutoPaths_MOD2 {
 
     public static double MIRROR_LINE = 70.75;   // center of the field (field is 141.5 x 141.5)
 
@@ -28,7 +28,7 @@ public class AutoPaths {
     public final Pose parkPose;
     public final Pose park2Pose;
 
-    public AutoPaths(boolean mirrorForRed) {
+    public AutoPaths_MOD2(boolean mirrorForRed) {
         PoseFactory p = PoseFactory.degrees();
         if (mirrorForRed) p = p.mirrorX(MIRROR_LINE);
 
