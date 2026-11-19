@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.biobuzz;
+package org.firstinspires.ftc.teamcode.biobuzz_modular;
 
 /** Rising-edge detector: rising(now) is true only on the loop where a button goes from released to pressed. */
 public class Edge {
