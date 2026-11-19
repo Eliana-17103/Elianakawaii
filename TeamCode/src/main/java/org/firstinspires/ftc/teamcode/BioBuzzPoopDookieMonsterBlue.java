@@ -51,7 +51,7 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
 
     private int lvelo = 1280;
 
-    private CRServo windmill;
+    private DcMotor transfer;
     private Path shoot() {
         return line(startPose, shootPose).linear(startPose, shootPose);
     }
@@ -77,38 +77,18 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
 
 
     // Feed balls
-    private Command feedballs() {
-        return sequential(
-                windmillCycle(), instant(() -> launcher.setVelocity(1250)), windmillCycle(), instant(() -> launcher.setVelocity(lvelo)), waitMs(100), windmillCycle(), windmillCycle(), windmillCycle(), windmillCycleSlow()
-        );
-    }
+    private Command feedballs = instant(() -> {
+        transfer.setPower(-1.0);
+    });
 
 
 
 
-    private Command windmillCycle() {
-        return sequential(
-                instant(() -> windmill.setPower(-0.5)),
-                waitMs(620), // Replace with calibrated 2-rotation time
 
-                instant(() -> windmill.setPower(0)),
-                waitMs(500)   // Pause between cycles
-        );
-    }
-    private Command windmillCycleSlow() {
-        return sequential(
-                waitMs(1000),
-                instant(() -> windmill.setPower(-0.3)),
-                waitMs(1200), // Replace with calibrated 2-rotation time
-
-                instant(() -> windmill.setPower(0))
-                // Pause between cycles
-        );
-    }
 
     // Stop launcher and windmill
     private Command stopboth = instant(() -> {
-        windmill.setPower(0);
+        transfer.setPower(0);
         launcher.setVelocity(0);
     });
 
@@ -117,7 +97,7 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
         return sequential(
                 startlauncher,
                 waitMs(2000),
-                feedballs(),
+                feedballs,
                 waitMs(3000),
                 stopboth
         );
@@ -132,7 +112,7 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
 
         leftIntakeServo = hardwareMap.get(CRServo.class, "left_intake_servo");
         rightIntakeServo = hardwareMap.get(CRServo.class, "right_intake_servo");
-        windmill = hardwareMap.get(CRServo.class, "windmill");
+        transfer = hardwareMap.get(DcMotor.class, "transfer");
         launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
