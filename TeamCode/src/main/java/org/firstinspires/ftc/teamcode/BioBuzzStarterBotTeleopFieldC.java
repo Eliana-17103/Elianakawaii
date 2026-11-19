@@ -766,7 +766,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
                 // Flip the state (if false -> becomes true; if true -> becomes false)
                 flowerIsUp = !flowerIsUp;
                 double flowerDownAngle;
-//                double flowerUpAngle;
+              double flowerUpAngle;
                 if (flowerIsUp) {
                     flowerIntake.setPosition(flowerDownAngle/300); // Move arm UP and hold
                 } else {
