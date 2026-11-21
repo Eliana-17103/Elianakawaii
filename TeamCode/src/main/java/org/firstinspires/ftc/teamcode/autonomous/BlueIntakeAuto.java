@@ -1,5 +1,5 @@
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.api.PoseFactory;

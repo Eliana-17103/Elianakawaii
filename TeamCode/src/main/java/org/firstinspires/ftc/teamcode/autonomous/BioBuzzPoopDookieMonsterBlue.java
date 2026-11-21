@@ -1,7 +1,6 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.pedropathing.ivy.Command;
-import com.pedropathing.ivy.commands.Commands;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.pedropathing.follower.Follower;
@@ -14,7 +13,6 @@ import com.pedropathing.ivy.Scheduler;
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.ivy.commands.Commands.waitMs;
-import static com.pedropathing.ivy.commands.Commands.waitUntil;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 
@@ -22,8 +20,6 @@ import com.pedropathing.paths.Path;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import static com.pedropathing.ivy.pedro.PedroCommands.*;
-import com.pedropathing.ivy.Command;
 
 @Autonomous
 public class BioBuzzPoopDookieMonsterBlue extends OpMode {
@@ -49,7 +45,7 @@ public class BioBuzzPoopDookieMonsterBlue extends OpMode {
     private CRServo leftIntakeServo;
     private CRServo rightIntakeServo;
 
-    private int lvelo = 1280;
+    private int lvelo = 1200;
 
     private DcMotor transfer;
     private Path shoot() {

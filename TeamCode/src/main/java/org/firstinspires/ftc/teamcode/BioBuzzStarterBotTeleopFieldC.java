@@ -45,6 +45,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
     private CRServo rightIntakeServo;
 
     private Servo defense;
+    private Servo flower_intake;
 
     private DcMotor transfer;
 
@@ -57,7 +58,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
     // =========================================================
 
     // Initial launcher velocity
-    private double launcherVelocity = 1320;
+    private double launcherVelocity = 1210;
 
     // Minimum and maximum allowed launcher velocities
     private static final double MIN_LAUNCHER_VELOCITY = 0;
@@ -308,6 +309,8 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
         defense = hardwareMap.get(
                 Servo.class, "defense");
+        flower_intake = hardwareMap.get(
+                Servo.class, "flower_intake");
 
 
         // Map transfer motor
@@ -524,6 +527,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
         boolean previousYButton = false;
 
         boolean armIsUp = false;     // Tracks whether the arm is currently up or down
+        boolean flowerIsDown=false;
         boolean previousAButton = false;
 
         // Slow mode starts disabled
@@ -800,7 +804,7 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
                 // Flip the state (if false -> becomes true; if true -> becomes false)
                 armIsUp = !armIsUp;
-                double targetangle = 90;
+                double targetangle = 110;
                 double sussy = -30;
                 if (armIsUp) {
                     defense.setPosition(sussy/300); // Move arm UP and hold
@@ -811,6 +815,25 @@ public class BioBuzzStarterBotTeleopFieldC extends LinearOpMode {
 
             // Update previousA for the next loop
             previousAButton = defenseButton;
+
+            //68. FLOWER.
+            boolean flowerButton = gamepad1.y;
+
+            if (flowerButton && !previousYButton) {
+
+                // Flip the state (if false -> becomes true; if true -> becomes false)
+                flowerIsDown = !flowerIsDown;
+                double idealangle = 143;
+                double awman = 17;
+                if (flowerIsDown) {
+                    flower_intake.setPosition(idealangle/300); // Move arm UP and hold
+                } else {
+                    flower_intake.setPosition(awman/300); // Move arm DOWN and hold
+                }
+            }
+
+            // Update previousA for the next loop
+            previousYButton = flowerButton;
 
             // -------------------------------------------------
             // 13. TRANSFER CONTROL

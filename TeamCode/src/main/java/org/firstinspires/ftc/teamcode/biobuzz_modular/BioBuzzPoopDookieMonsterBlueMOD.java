@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.pedro.procedures.Constants;
 
 @Autonomous
-public class BioBuzzPoopDookieMonsterBlue extends OpMode {
+public class BioBuzzPoopDookieMonsterBlueMOD extends OpMode {
 
     // ============================== POSES (yours, unchanged) ==============================
     private final PoseFactory p = PoseFactory.degrees();
